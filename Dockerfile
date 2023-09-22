@@ -5,18 +5,18 @@ FROM node:lts-alpine
 RUN apk add build-base gcompat g++ make python3 zip bash git chromium openjdk11-jre
 RUN apk add --no-cache libc6-compat
 # RUN apk add --no-cache gcc sudo curl pkgconfig pixman-dev libpng libpng-dev pango-dev cairo-dev
-RUN apk add --no-cache --virtual .build-deps \
-    build-base \
+RUN apk add --no-cache --virtual .build-deps 
+	build-base \
 	g++ \
 	cairo-dev \
 	jpeg-dev \
 	pango-dev \
-	giflib-dev \
-    && apk add --no-cache --virtual .runtime-deps \
-    cairo \
+	giflib-dev
+RUN apk add --no-cache --virtual .runtime-deps \
+    	cairo \
 	jpeg \
 	pango \
-	giflib \
+	giflib
     
 #  add glibc
 # RUN apk del libc6-compat
