@@ -5,7 +5,7 @@ FROM node:lts-alpine
 RUN apk add build-base gcompat g++ make python3 zip bash git chromium openjdk11-jre
 RUN apk add --no-cache libc6-compat
 # RUN apk add --no-cache gcc sudo curl pkgconfig pixman-dev libpng libpng-dev pango-dev cairo-dev
-RUN apk add --no-cache --virtual .build-deps 
+RUN apk add --no-cache --virtual .build-deps \
 	build-base \
 	g++ \
 	cairo-dev \
