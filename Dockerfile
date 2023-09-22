@@ -12,7 +12,6 @@ RUN apk add --no-cache \
     libpng-dev \
     pango-dev \
     cairo-dev \
-    python \
     ;
     
 #  add glibc and install canvas
