@@ -3,6 +3,14 @@ FROM node:lts-alpine
 
 # Installation of packages for purple-hats and chromium
 RUN apk add build-base gcompat g++ make python3 zip bash git chromium openjdk11-jre
+RUN apk add --update --no-cache \
+    make \
+    g++ \
+    cairo-dev \
+    pango-dev \
+    libtool \
+    autoconf \
+    automake
 
 # Installation of VeraPDF
 RUN echo $'<?xml version="1.0" encoding="UTF-8" standalone="no"?> \n\
