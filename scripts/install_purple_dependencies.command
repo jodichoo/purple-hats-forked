@@ -11,6 +11,37 @@ fi
 
 PROJECT_DIR="$PWD"
 
+if [[ $(uname -m) == 'arm64' ]]; then
+  echo "THis mac is arm64"
+  
+  echo "Checking Command Line Tools for Xcode"
+  # Only run if the tools are not installed yet
+  # To check that try to print the SDK path
+  xcode-select -p &> /dev/null
+  if [ $? -ne 0 ]; then
+    echo "Command Line Tools for Xcode not found. Installing from softwareupdate…"
+  # This temporary file prompts the 'softwareupdate' utility to list the Command Line Tools
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+    PROD=$(softwareupdate -l | grep "\*.*Command Line" | tail -n 1 | sed 's/^[^C]* //')
+    softwareupdate -i "$PROD" --verbose;
+  else
+    echo "Command Line Tools for Xcode have been installed."
+  fi
+  xcode-select --install
+
+  export HOMEBREW_INSTALL_FROM_API=1
+  if ! command -v brew &>/dev/null; then
+    echo "Installing Homebrew"
+    # Homebrew default install dir is /opt/homebrew for m1 macs
+    mkdir -p /opt/homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /opt/homebrew
+    export PATH="/opt/homebrew/bin:$PATH"
+  fi
+  
+  echo "Homebrew is installed"
+  echo "Downloading node-canvas dependencies"
+  brew install pkg-config cairo pango libpng
+fi
+
 if ! [ -f nodejs-mac-arm64/bin/node ]; then
   echo "Downloading NodeJS LTS (ARM64)"
   curl -o ./nodejs-mac-arm64.tar.gz --create-dirs https://nodejs.org/dist/v18.12.1/node-v18.12.1-darwin-arm64.tar.gz  
