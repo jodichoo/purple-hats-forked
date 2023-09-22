@@ -4,7 +4,6 @@ FROM node:lts-alpine
 # Installation of packages for purple-hats and chromium
 RUN apk add build-base gcompat g++ make python3 zip bash git chromium openjdk11-jre
 RUN apk add --no-cache libc6-compat
-# RUN apk add --no-cache gcc sudo curl pkgconfig pixman-dev libpng libpng-dev pango-dev cairo-dev
 RUN apk add --no-cache --virtual .build-deps \
 	build-base \
 	g++ \
@@ -17,18 +16,6 @@ RUN apk add --no-cache --virtual .runtime-deps \
 	jpeg \
 	pango \
 	giflib
-    
-#  add glibc
-# RUN apk del libc6-compat
-# RUN apk --no-cache add ca-certificates
-
-# RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-# RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk
-# RUN apk add glibc-2.35-r1.apk
-
-# RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-# RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-2.29-r0.apk
-# RUN apk add glibc-2.29-r0.apk
 
 # Installation of VeraPDF
 RUN echo $'<?xml version="1.0" encoding="UTF-8" standalone="no"?> \n\
