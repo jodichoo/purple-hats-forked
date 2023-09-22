@@ -6,10 +6,13 @@ RUN apk add build-base gcompat g++ make python3 zip bash git chromium openjdk11-
 RUN apk add --no-cache gcc sudo curl pkgconfig pixman-dev libpng libpng-dev pango-dev cairo-dev
     
 #  add glibc
-RUN apk --no-cache add ca-certificates
+# RUN apk --no-cache add ca-certificates
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-2.29-r0.apk
-RUN apk add glibc-2.29-r0.apk
+RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk
+RUN apk add glibc-2.35-r1.apk
+# RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+# RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-2.29-r0.apk
+# RUN apk add glibc-2.29-r0.apk
 
 # Installation of VeraPDF
 RUN echo $'<?xml version="1.0" encoding="UTF-8" standalone="no"?> \n\
