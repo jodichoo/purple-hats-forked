@@ -4,15 +4,15 @@ FROM node:lts-alpine
 # Installation of packages for purple-hats and chromium
 RUN apk add build-base gcompat g++ make python3 zip bash git chromium openjdk11-jre
 RUN apk add --no-cache \
+    gcc \
     sudo \
     curl \
-    build-base \
-    g++ \
+    pkgconfig \
+    pixman-dev \
     libpng \
     libpng-dev \
     pango-dev \
     cairo-dev \
-    ;
     
 #  add glibc and install canvas
 RUN apk --no-cache add ca-certificates wget  && \
